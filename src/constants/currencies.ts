@@ -1,5 +1,17 @@
-export const currencies = [
-  { key: 'EUR', value: 'EUR', flag: 'eu', text: 'EUR' },
-  { key: 'GBP', value: 'GBP', flag: 'uk', text: 'GBP' },
-  { key: 'USD', value: 'USD', flag: 'us', text: 'USD' },
+import { DICTIONARY } from "./dictionary"
+
+const EUR = 'EUR'
+const GBP = 'GBP'
+const USD = 'USD'
+
+export const CURRENCIES = {
+  EUR,
+  GBP,
+  USD
+}
+
+export const currenciesData = [
+  { key: EUR, value: EUR, flag: 'eu', text: DICTIONARY.EUR },
+  { key: GBP, value: GBP, flag: 'uk', text: DICTIONARY.GBP },
+  { key: USD, value: USD, flag: 'us', text: DICTIONARY.USD },
 ]

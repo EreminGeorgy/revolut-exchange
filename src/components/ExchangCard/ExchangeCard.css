@@ -1,0 +1,8 @@
+.card-content {
+  display: flex;
+}
+
+.currency-input.input > input {
+  text-align: right;
+  width: 12em;
+}

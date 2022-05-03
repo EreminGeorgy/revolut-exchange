@@ -12,9 +12,9 @@
     "@types/react-dom": "18.0.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "react-scripts": "^5.0.1",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.1.2",
+    "react-scripts": "5.0.1",
+    "semantic-ui-css": "2.4.1",
+    "semantic-ui-react": "2.1.2",
     "typescript": "4.4.2",
     "web-vitals": "2.1.0"
   },
@@ -23,7 +23,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "semantic-ui-css-patch"
+    "postinstall": "semantic-ui-css-patch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +46,13 @@
     ]
   },
   "devDependencies": {
-    "@semantic-ui-react/css-patch": "^1.0.0"
+    "@semantic-ui-react/css-patch": "^1.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0"
   }
 }

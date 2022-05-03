@@ -1,0 +1,120 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module",
+    // Allows for the use of imports
+    "ecmaFeatures": {
+      "jsx": true
+      // Allows for the parsing of JSX
+    }
+  },
+  "plugins": [
+    "react-hooks"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "globals": {
+    "__DEV__": false
+  },
+  "settings": {
+    "react": {
+      // Pragma to use, default to "React"
+      "pragma": "React",
+      // React version, default to the latest React stable release
+      "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".ts",
+        ".tsx"
+      ]
+    },
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src",
+          "node_modules"
+        ],
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    }
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "react/jsx-indent": [ "error", 2 ],
+    "react-hooks/rules-of-hooks": "error",
+    // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn",
+    // Checks effect dependencies
+
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    "no-unneeded-ternary": [
+      "error",
+      {
+        "defaultAssignment": false
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "react/display-name": 0,
+    "import/no-named-as-default": 0,
+    "promise/always-return": 0,
+    "no-case-declarations": 0,
+    "no-var": "off",
+    "curly": "error",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-explicit-any": "off"
+  },
+  // turn off proptypes check for tsx files
+  "overrides": [
+    {
+      "files": [
+        "**/*.tsx"
+      ],
+      "rules": {
+        "react/prop-types": "off"
+      }
+    }
+  ]
+}
