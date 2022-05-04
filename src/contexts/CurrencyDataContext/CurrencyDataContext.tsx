@@ -1,7 +1,9 @@
-import { createContext, useReducer, FC, ReactNode, Dispatch} from 'react'
+import { createContext, useReducer, FC, ReactNode, Dispatch, useMemo} from 'react'
 
 import { CurrencyAction } from '../../reducers/currencyDataReducer/actions'
 import { CurrencyState, initialState, reducer } from '../../reducers/currencyDataReducer/reducer'
+import useRates from '../../hooks/useRates'
+
 
 type Props = {
   children: ReactNode
@@ -10,18 +12,41 @@ type Props = {
 export const CurrencyDataContext = createContext<{
   state: CurrencyState
   dispatch: Dispatch<CurrencyAction>
+  rate: number,
+  error: Error | undefined
 }>({
   state: initialState,
-  dispatch: () => null
+  dispatch: () => null,
+  rate: 0,
+  error: undefined,
 })
 
 const CurrencyDataProvider: FC<Props> = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  const { data, error } = useRates()
+
+  const rate = useMemo(
+    () => { 
+      const dependentCurrencyRate = data?.rates[state.dependentCurrency]
+      const mainCurrencyRate = data?.rates[state.mainCurrency]
+      if (!mainCurrencyRate || !dependentCurrencyRate) {
+        return 0
+      }
+      return dependentCurrencyRate / mainCurrencyRate
+    },
+    [state, data]
+  )
+
   return (
     <CurrencyDataContext.Provider
-      value={{ state, dispatch }}
+      value={{ 
+        state,
+        dispatch,
+        rate,
+        error,
+      }}
     >
       {children}
     </CurrencyDataContext.Provider>

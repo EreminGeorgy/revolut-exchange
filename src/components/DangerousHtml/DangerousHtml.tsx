@@ -1,4 +1,4 @@
-import { ElementType, ReactChild, ReactNode, FC } from 'react'
+import { ElementType, ReactNode, FC } from 'react'
 
 type Props = {
 	as?: ElementType

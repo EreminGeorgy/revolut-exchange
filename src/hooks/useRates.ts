@@ -1,0 +1,28 @@
+import { useState, useEffect } from "react"
+
+import { RETRY_LOAD_INTERVAL, REFRESH_RATE_IN_MILLISECONDS } from "../config"
+import { ratesUrl } from "../util/getRatesUrl"
+
+import usePolling from "./usePolling"
+
+function useRates() {
+  const [interval, setInterval] = useState(RETRY_LOAD_INTERVAL)
+
+  const { data, error } = usePolling(interval, ratesUrl)
+
+  useEffect(
+    () => {
+      if (data) {
+        setInterval(REFRESH_RATE_IN_MILLISECONDS)
+      } else {
+        setInterval(RETRY_LOAD_INTERVAL)
+      }
+    },
+    [data]
+  )
+
+  return { data, error }
+}
+
+export default useRates
+

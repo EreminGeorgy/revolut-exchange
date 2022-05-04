@@ -1,26 +1,17 @@
-import './App.css';
-import { Card } from 'semantic-ui-react'
+import './App.css'
 
-import ExchangCard from './components/ExchangCard'
-import Header from './components/Header';
-import Rate from './components/Rate';
-import SwitchButton from './components/SwitchButton';
-import CurrencyDataProvider from './contexts/CurrencyDataContext/CurrencyDataContext';
+import CurrencyDataProvider from './contexts/CurrencyDataContext/CurrencyDataContext'
+import ExchangeWidget from './modules/ExchangeWidget'
 
 const App: React.FC = () => {
+
   return (
     <div className="app">
       <CurrencyDataProvider>
-        <Card className="container">
-          <Header/>
-          <Rate/>
-          <ExchangCard/>
-          <SwitchButton/>
-          <ExchangCard/>
-        </Card>
+        <ExchangeWidget/>
       </CurrencyDataProvider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
