@@ -1,11 +1,11 @@
 import { Label, Icon } from 'semantic-ui-react'
-import { useContext, useMemo } from 'react'
+import { useContext, useMemo, FC } from 'react'
 
 import DangerousHtml from '../DangerousHtml'
 import { getCurrencySign } from '../../util/getCurrencySign'
 import { CurrencyDataContext } from '../../contexts/CurrencyDataContext'
 
-const Rate: React.FC = () => {
+const Rate: FC = () => {
 
   const { state, rate } = useContext(CurrencyDataContext)
 

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, FC } from 'react'
 
 import { DICTIONARY } from '../../constants/dictionary'
 import { CurrencyDataContext } from '../../contexts/CurrencyDataContext'
@@ -8,7 +8,7 @@ interface StringMap {
   [key: string]: string
 }
 
-const Header: React.FC = () => {
+const Header: FC = () => {
   const { state } = useContext(CurrencyDataContext)
 
   return (

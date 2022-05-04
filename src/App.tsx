@@ -1,9 +1,10 @@
-import './App.css'
+import { FC } from 'react'
 
 import CurrencyDataProvider from './contexts/CurrencyDataContext/CurrencyDataContext'
 import ExchangeWidget from './modules/ExchangeWidget'
+import './App.css'
 
-const App: React.FC = () => {
+const App: FC = () => {
 
   return (
     <div className="app">

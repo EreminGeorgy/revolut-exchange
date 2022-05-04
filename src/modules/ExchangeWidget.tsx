@@ -1,10 +1,9 @@
 import { Card } from 'semantic-ui-react'
 import { FC } from 'react'
 
-import ExchangCard from '../components/ExchangCard'
 import Header from '../components/Header'
 import Rate from '../components/Rate'
-import SwitchButton from '../components/SwitchButton'
+import ExchangeField from '../components/ExchangeField'
 
 const ExchangeWidget: FC = () => {
 
@@ -12,9 +11,7 @@ const ExchangeWidget: FC = () => {
     <Card className="container">
       <Header/>
       <Rate/>
-      <ExchangCard/>
-      <SwitchButton/>
-      <ExchangCard/>
+      <ExchangeField/>
     </Card>
   )
 }

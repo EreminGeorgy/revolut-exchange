@@ -1,10 +1,10 @@
 import { Divider, Button } from 'semantic-ui-react'
-import { useCallback, useContext } from 'react'
+import { useCallback, useContext, FC } from 'react'
 
-import { CurrencyDataContext } from '../../contexts/CurrencyDataContext'
-import { SWITCH_BUY_MODE } from '../../reducers/currencyDataReducer/actions'
+import { CurrencyDataContext } from '../../../contexts/CurrencyDataContext'
+import { SWITCH_BUY_MODE } from '../../../reducers/currencyDataReducer/actions'
 
-const SwitchButton: React.FC = () => {
+const SwitchButton: FC = () => {
 
   const { state, dispatch } = useContext(CurrencyDataContext)
   
@@ -17,7 +17,7 @@ const SwitchButton: React.FC = () => {
   return (
     <Divider horizontal fitted clearing>
       <div>
-        <Button onClick={onArrowClick} basic circular icon={ state.isBuyMode ? 'arrow down' : 'arrow up' } size='mini'/> 
+        <Button onClick={onArrowClick} basic circular icon={ state.isBuyMode ? 'arrow up' : 'arrow down' } size='mini'/> 
       </div>
     </Divider>
   )
