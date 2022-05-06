@@ -1,17 +1,13 @@
 import { DICTIONARY } from "./dictionary"
 
-const EUR = 'EUR'
-const GBP = 'GBP'
-const USD = 'USD'
-
-export const CURRENCIES = {
-  EUR,
-  GBP,
-  USD
+export enum CURRENCIES {
+  EUR = 'EUR',
+  GBP = 'GBP',
+  USD = 'USD'
 }
 
 export const currenciesData = [
-  { key: EUR, value: EUR, flag: 'eu', text: DICTIONARY.EUR },
-  { key: GBP, value: GBP, flag: 'uk', text: DICTIONARY.GBP },
-  { key: USD, value: USD, flag: 'us', text: DICTIONARY.USD },
+  { key: CURRENCIES.EUR, value: CURRENCIES.EUR, flag: 'eu', text: DICTIONARY.EUR },
+  { key: CURRENCIES.GBP, value: CURRENCIES.GBP, flag: 'uk', text: DICTIONARY.GBP },
+  { key: CURRENCIES.USD, value: CURRENCIES.USD, flag: 'us', text: DICTIONARY.USD },
 ]

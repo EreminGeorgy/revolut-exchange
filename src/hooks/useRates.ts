@@ -14,8 +14,6 @@ function useRates() {
     () => {
       if (data) {
         setInterval(REFRESH_RATE_IN_MILLISECONDS)
-      } else {
-        setInterval(RETRY_LOAD_INTERVAL)
       }
     },
     [data]

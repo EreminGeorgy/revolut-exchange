@@ -1,6 +1,6 @@
 import { CURRENCIES } from "../constants/currencies"
 
-export const getCurrencySign = (currency: string): string => {
+export const getCurrencySign = (currency: CURRENCIES): string => {
   switch (currency) {
   case CURRENCIES.EUR:
     return '€'

@@ -1,3 +1,5 @@
+import { CURRENCIES } from '../../constants/currencies'
+
 import { 
   LOADING,
   FETCHED,
@@ -6,7 +8,7 @@ import {
 } from './actions'
 
 type CurrencyData = {
-  base: string,
+  base: CURRENCIES,
   disclamer: string,
   license: string,
   rates: {

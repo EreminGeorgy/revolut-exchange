@@ -1,8 +1,8 @@
 import { Divider, Button } from 'semantic-ui-react'
 import { useCallback, useContext, FC } from 'react'
 
-import { CurrencyDataContext } from '../../../contexts/CurrencyDataContext'
-import { SWITCH_BUY_MODE } from '../../../reducers/currencyDataReducer/actions'
+import { CurrencyDataContext } from '../../contexts/CurrencyDataContext'
+import { SWITCH_BUY_MODE } from '../../reducers/currencyDataReducer/actions'
 
 const SwitchButton: FC = () => {
 

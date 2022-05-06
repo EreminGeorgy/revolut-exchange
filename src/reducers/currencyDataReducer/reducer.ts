@@ -8,8 +8,8 @@ import {
 } from './actions'
 
 export type CurrencyState = {
-  mainCurrency: string,
-  dependentCurrency: string,
+  mainCurrency: CURRENCIES,
+  dependentCurrency: CURRENCIES,
   isBuyMode: boolean,
 }
 
