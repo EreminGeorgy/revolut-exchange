@@ -3,10 +3,7 @@ import { useContext, FC } from 'react'
 import { DICTIONARY } from '../../constants/dictionary'
 import { CurrencyDataContext } from '../../contexts/CurrencyDataContext'
 import DangerousHtml from '../DangerousHtml'
-
-interface StringMap {
-  [key: string]: string
-}
+import { StringMap } from '../types'
 
 const Header: FC = () => {
   const { state } = useContext(CurrencyDataContext)

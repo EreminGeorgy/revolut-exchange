@@ -1,7 +1,7 @@
-import { Card, Dropdown, Input } from 'semantic-ui-react'
+import { Card, Dropdown, Input, Label } from 'semantic-ui-react'
 import { DropdownProps } from 'semantic-ui-react/dist/commonjs/modules/Dropdown'
 import { InputProps } from 'semantic-ui-react/dist/commonjs/elements/Input'
-import { useContext, FC, SyntheticEvent, useCallback, useMemo } from 'react'
+import { useContext, FC, SyntheticEvent, useCallback, useMemo, useState } from 'react'
 
 import { CURRENCIES, currenciesData } from '../../constants/currencies'
 import { CurrencyDataContext } from '../../contexts/CurrencyDataContext'
@@ -10,15 +10,17 @@ import { InputState, WalletsState } from '../types'
 import NUMBER_INPUT_PATTERN from '../../constants/numberInputPattern'
 import './ExchangeCard.css'
 import { getCurrencySign } from '../../util/getCurrencySign'
+import { DICTIONARY } from '../../constants/dictionary'
 
 type Props = {
   isMain: boolean
   currencyValues: InputState
   setCurrencyValues: (value: InputState) => void
   wallets: WalletsState
+  errorMessage: boolean
 }
 
-const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wallets }) => {
+const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wallets, errorMessage }) => {
 
   const { state, dispatch, rate } = useContext(CurrencyDataContext)
 
@@ -26,6 +28,12 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
     () => isMain ? state.mainCurrency : state.dependentCurrency,
     [isMain, state.mainCurrency, state.dependentCurrency]
   )
+
+  const isSelling = useMemo(
+    () => isMain !== state.isBuyMode,
+    [isMain, state.isBuyMode]
+  )
+
   const actionType = isMain ? SET_MAIN_CURRENCY : SET_DEPENDENT_CURRENCY
   const handleDropdownChange = useCallback(
     (e: SyntheticEvent<HTMLElement, Event>, data: DropdownProps ) =>  {
@@ -38,7 +46,6 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
     [dispatch, setCurrencyValues, actionType]
   )
 
-  const inputValue = isMain ? currencyValues.main : currencyValues.dependent
   const handleInputChange = useCallback(
     (e: SyntheticEvent<HTMLElement, Event>, data: InputProps) => {
       const match = data.value.match(NUMBER_INPUT_PATTERN);
@@ -64,7 +71,7 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
 
   const balanceString = useMemo(
     () => `
-      Balance: 
+      ${DICTIONARY.balance} 
       ${getCurrencySign(cardCurrency)}
       ${(isMain ? wallets[state.mainCurrency] : wallets[state.dependentCurrency]).toFixed(2)}
     `,
@@ -90,12 +97,15 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
               transparent 
               placeholder='0'  
               size='large'
-              value={inputValue}
+              value={isMain ? currencyValues.main : currencyValues.dependent}
               onChange={handleInputChange}
             />
           </div>
         </div>
-        <Card.Meta content={balanceString} />
+        <div>
+          <Card.Meta content={balanceString} />
+          {errorMessage && isSelling && <Label basic color='red'>{DICTIONARY.exeedsBallance}</Label>}
+        </div>
       </Card.Content>
     </Card>
   )

@@ -1,5 +1,5 @@
 import { Card } from 'semantic-ui-react'
-import { FC, useCallback, useContext, useState } from 'react'
+import { FC, useCallback, useContext, useState, useEffect, useMemo } from 'react'
 
 import { WalletsContext } from '../contexts/WalletsContext'
 import { CurrencyDataContext } from '../contexts/CurrencyDataContext'
@@ -14,12 +14,18 @@ import { CURRENCIES } from '../constants/currencies'
 const ExchangeWidget: FC = () => {
 
   const { wallets, updateWallets } = useContext(WalletsContext)
-  const { state } = useContext(CurrencyDataContext)
+  const { state, error, isFetching} = useContext(CurrencyDataContext)
 
   const [currencyValues, setCurrencyValues] = useState<InputState>({
     main: '',
     dependent: '',
   })
+
+  const errorCase = useMemo(
+    () => !state.isBuyMode && (wallets[state.mainCurrency] - Number(currencyValues.main) < 0)
+      || state.isBuyMode && (wallets[state.dependentCurrency] - Number(currencyValues.dependent) < 0),
+    [currencyValues, state, wallets]
+  )
 
   const chooseValue = useCallback(
     (first: string , second: string): string => state.isBuyMode ? first : second,
@@ -51,6 +57,7 @@ const ExchangeWidget: FC = () => {
         currencyValues={currencyValues}
         setCurrencyValues={setCurrencyValues}
         wallets={wallets}
+        errorMessage={errorCase}
       />
       <SwitchButton/>
       <ExchangeCard 
@@ -58,8 +65,9 @@ const ExchangeWidget: FC = () => {
         currencyValues={currencyValues}
         setCurrencyValues={setCurrencyValues}
         wallets={wallets}
+        errorMessage ={errorCase}
       />
-      <SubmitButton onClick={submitHandler}/>
+      <SubmitButton disabled={!!error || isFetching} onClick={submitHandler} currencyValues={currencyValues}/>
     </Card>
   )
 }

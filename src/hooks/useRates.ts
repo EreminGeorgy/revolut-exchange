@@ -8,7 +8,7 @@ import usePolling from "./usePolling"
 function useRates() {
   const [interval, setInterval] = useState(RETRY_LOAD_INTERVAL)
 
-  const { data, error } = usePolling(interval, ratesUrl)
+  const { data, error, isFetching } = usePolling(interval, ratesUrl)
 
   useEffect(
     () => {
@@ -19,7 +19,7 @@ function useRates() {
     [data]
   )
 
-  return { data, error }
+  return { data, error, isFetching }
 }
 
 export default useRates

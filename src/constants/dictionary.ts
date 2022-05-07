@@ -3,5 +3,10 @@ export const DICTIONARY = {
   sell: 'Sell',
   EUR: 'EUR',
   USD: 'USD',
-  GBP: 'GBP'
+  GBP: 'GBP',
+  for: 'for',
+  balance: 'Balance:',
+  success: 'Success!',
+  transactionInfo: 'You exchanged',
+  exeedsBallance: 'exeeds ballance'
 }

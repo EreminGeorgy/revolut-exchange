@@ -36,7 +36,7 @@ const WalletsProvider: FC<Props> = ({ children }) => {
   const [wallets, setWallets] = useState(initialState)
 
   const updateWallets = useCallback(
-    (exchange: Exchange) => {
+    (exchange: Exchange) => {      
       setWallets(prevState => {
         return {
           ...prevState,

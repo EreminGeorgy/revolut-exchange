@@ -8,3 +8,6 @@ export type InputState = {
 export type WalletsState = {
   [index in CURRENCIES]: number
 }
+export interface StringMap {
+  [key: string]: string
+}

@@ -14,18 +14,20 @@ export const CurrencyDataContext = createContext<{
   dispatch: Dispatch<CurrencyAction>
   rate: number,
   error: Error | undefined
+  isFetching: boolean
 }>({
   state: initialState,
   dispatch: () => null,
   rate: 0,
   error: undefined,
+  isFetching: false
 })
 
 const CurrencyDataProvider: FC<Props> = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const { data, error } = useRates()
+  const { data, error, isFetching } = useRates()
 
   const rate = useMemo(
     () => { 
@@ -46,6 +48,7 @@ const CurrencyDataProvider: FC<Props> = ({ children }) => {
         dispatch,
         rate,
         error,
+        isFetching,
       }}
     >
       {children}
