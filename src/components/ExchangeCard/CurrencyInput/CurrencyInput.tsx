@@ -7,7 +7,7 @@ import NUMBER_INPUT_PATTERN from '../../../constants/numberInputPattern'
 type Props = {
   isMain: boolean
   value: string
-  handleInputChange: (e:SyntheticEvent<HTMLElement, Event>, value: string) => void
+  handleInputChange: (value: string) => void
 }
 
 const CurrencyInput: FC<Props> = ({ isMain, value, handleInputChange }) => {
@@ -20,7 +20,7 @@ const CurrencyInput: FC<Props> = ({ isMain, value, handleInputChange }) => {
         return
       }
 
-      handleInputChange(e, data.value)
+      handleInputChange(data.value)
   
     },
     [handleInputChange]

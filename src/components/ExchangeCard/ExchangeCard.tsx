@@ -1,16 +1,17 @@
-import { Card, Dropdown, Input, Label } from 'semantic-ui-react'
+import { Card, Dropdown, Label } from 'semantic-ui-react'
 import { DropdownProps } from 'semantic-ui-react/dist/commonjs/modules/Dropdown'
-import { InputProps } from 'semantic-ui-react/dist/commonjs/elements/Input'
 import { useContext, FC, SyntheticEvent, useCallback, useMemo } from 'react'
 
 import { CURRENCIES, currenciesData } from '../../constants/currencies'
 import { CurrencyDataContext } from '../../contexts/CurrencyDataContext'
 import { SET_MAIN_CURRENCY, SET_DEPENDENT_CURRENCY } from '../../reducers/currencyDataReducer/actions'
 import { InputState, WalletsState } from '../types'
-import NUMBER_INPUT_PATTERN from '../../constants/numberInputPattern'
 import './ExchangeCard.css'
 import { getCurrencySign } from '../../util/getCurrencySign'
 import { DICTIONARY } from '../../constants/dictionary'
+
+import CurrencyInput from './CurrencyInput'
+
 
 type Props = {
   isMain: boolean
@@ -47,22 +48,16 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
   )
 
   const handleInputChange = useCallback(
-    (e: SyntheticEvent<HTMLElement, Event>, data: InputProps) => {
-      const match = data.value.match(NUMBER_INPUT_PATTERN);
-  
-      if (!match) {
-        return
-      }
-  
+    (value: string) => {
       if (isMain) {
         setCurrencyValues({
-          main: data.value,
-          dependent: ((Number(data.value) * rate).toFixed(2)),
+          main: value,
+          dependent: ((Number(value) * rate).toFixed(2)),
         })
       } else {
         setCurrencyValues({
-          main: (Number(data.value) / rate).toFixed(2),
-          dependent: data.value,
+          main: (Number(value) / rate).toFixed(2),
+          dependent: value,
         })
       }
     },
@@ -93,14 +88,10 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
             />
           </div>
           <div>
-            <Input
-              className="currency-input"
-              transparent 
-              placeholder='0'  
-              size='large'
+            <CurrencyInput
               value={isMain ? currencyValues.main : currencyValues.dependent}
-              onChange={handleInputChange}
-              data-testid={`${isMain ? 'currency-input-main' : 'currency-input-secondary'}`}
+              handleInputChange={handleInputChange}
+              isMain={isMain}
             />
           </div>
         </div>
