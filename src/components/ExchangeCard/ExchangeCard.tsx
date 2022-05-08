@@ -1,7 +1,7 @@
 import { Card, Dropdown, Input, Label } from 'semantic-ui-react'
 import { DropdownProps } from 'semantic-ui-react/dist/commonjs/modules/Dropdown'
 import { InputProps } from 'semantic-ui-react/dist/commonjs/elements/Input'
-import { useContext, FC, SyntheticEvent, useCallback, useMemo, useState } from 'react'
+import { useContext, FC, SyntheticEvent, useCallback, useMemo } from 'react'
 
 import { CURRENCIES, currenciesData } from '../../constants/currencies'
 import { CurrencyDataContext } from '../../contexts/CurrencyDataContext'

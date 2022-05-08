@@ -1,5 +1,5 @@
 import { Card } from 'semantic-ui-react'
-import { FC, useCallback, useContext, useState, useEffect, useMemo } from 'react'
+import { FC, useCallback, useContext, useState, useMemo } from 'react'
 
 import { WalletsContext } from '../contexts/WalletsContext'
 import { CurrencyDataContext } from '../contexts/CurrencyDataContext'
