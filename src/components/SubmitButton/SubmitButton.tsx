@@ -10,9 +10,10 @@ type Props = {
   onClick: () => void
   currencyValues: InputState
   disabled: boolean
+  setCurrencyValues: (value: InputState) => void
 }
 
-const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled }) => {
+const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled, setCurrencyValues }) => {
 
   const { state } = useContext(CurrencyDataContext)
 
@@ -41,6 +42,17 @@ const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled }) => {
     [currencyValues, state]
   )
 
+  const onModalClose = useCallback(
+    () => {
+      setCurrencyValues({
+        main: '',
+        dependent: '',
+      })
+      setModalOpen(false)
+    },
+    [setCurrencyValues]
+  )
+
   return (
     <>
       <Button onClick={handleButtonClick} fluid disabled={disabled} data-testid="submit">
@@ -52,7 +64,7 @@ const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled }) => {
         `}
       </Button>
       <Modal
-        onClose={() => setModalOpen(false)}
+        onClose={onModalClose}
         onOpen={() => setModalOpen(true)}
         open={isModalOpen}
         size='mini'
@@ -68,7 +80,7 @@ const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled }) => {
             content="Ok"
             labelPosition='right'
             icon='checkmark'
-            onClick={() => setModalOpen(false)}
+            onClick={onModalClose}
             positive
             data-testid="ok-button"
           />

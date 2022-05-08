@@ -10,6 +10,7 @@ import SwitchButton from '../components/SwitchButton'
 import { InputState } from '../components/types'
 import SubmitButton from '../components/SubmitButton'
 import { CURRENCIES } from '../constants/currencies'
+import useDebounce from '../hooks/useDebounce'
 
 const ExchangeWidget: FC = () => {
 
@@ -21,6 +22,8 @@ const ExchangeWidget: FC = () => {
     dependent: '',
   })
 
+  const debouncedCurrrencyValues = useDebounce(currencyValues, 300)
+
   const errorCase = useMemo(
     () => !state.isBuyMode && (wallets[state.mainCurrency] - Number(currencyValues.main) < 0)
       || state.isBuyMode && (wallets[state.dependentCurrency] - Number(currencyValues.dependent) < 0),
@@ -30,6 +33,11 @@ const ExchangeWidget: FC = () => {
   const equalSelectorsCase = useMemo(
     () => state.mainCurrency === state.dependentCurrency,
     [state.mainCurrency, state.dependentCurrency]
+  )
+
+  const zeroExchangeCase = useMemo(
+    () => Number(currencyValues.main) === 0,
+    [currencyValues.main]
   )
 
   const chooseValue = useCallback(
@@ -68,16 +76,17 @@ const ExchangeWidget: FC = () => {
       <SwitchButton/>
       <ExchangeCard 
         isMain={false}
-        currencyValues={currencyValues}
+        currencyValues={debouncedCurrrencyValues}
         setCurrencyValues={setCurrencyValues}
         wallets={wallets}
         errorMessage ={errorCase}
         data-testid="exchange-card-secondary"
       />
       <SubmitButton 
-        disabled={!!error || isFetching || equalSelectorsCase || errorCase} 
+        disabled={!!error || isFetching || equalSelectorsCase || errorCase || zeroExchangeCase} 
         onClick={submitHandler} 
-        currencyValues={currencyValues}
+        currencyValues={debouncedCurrrencyValues}
+        setCurrencyValues={setCurrencyValues}
       />
     </Card>
   )
