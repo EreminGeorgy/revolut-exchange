@@ -43,7 +43,7 @@ const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled }) => {
 
   return (
     <>
-      <Button onClick={handleButtonClick} fluid disabled={disabled}>
+      <Button onClick={handleButtonClick} fluid disabled={disabled} data-testid="submit">
         {`
           ${state.isBuyMode ? DICTIONARY.buy : DICTIONARY.sell} 
           ${(DICTIONARY as StringMap)[state.mainCurrency]}
@@ -59,7 +59,7 @@ const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled }) => {
       >
         <Modal.Header>{DICTIONARY.success}</Modal.Header>
         <Modal.Content>
-          <Modal.Description>
+          <Modal.Description data-testid="modal-description">
             {message}
           </Modal.Description>
         </Modal.Content>
@@ -70,6 +70,7 @@ const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled }) => {
             icon='checkmark'
             onClick={() => setModalOpen(false)}
             positive
+            data-testid="ok-button"
           />
         </Modal.Actions>
       </Modal>

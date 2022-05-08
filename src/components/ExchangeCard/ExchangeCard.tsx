@@ -89,6 +89,7 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
               options={currenciesData}
               value={cardCurrency}
               onChange={handleDropdownChange}
+              data-testid={`${isMain ? 'currency-selector-main' : 'currency-selector-secondary'}`}
             />
           </div>
           <div>
@@ -99,12 +100,17 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
               size='large'
               value={isMain ? currencyValues.main : currencyValues.dependent}
               onChange={handleInputChange}
+              data-testid={`${isMain ? 'currency-input-main' : 'currency-input-secondary'}`}
             />
           </div>
         </div>
         <div>
-          <Card.Meta content={balanceString} />
-          {errorMessage && isSelling && <Label basic color='red'>{DICTIONARY.exeedsBallance}</Label>}
+          <Card.Meta content={balanceString} data-testid={`${isMain ? 'main-wallet' : 'secondary-wallet'}`}/>
+          {errorMessage && isSelling && 
+            <Label basic color='red' data-testid={`${isMain ? 'error-label-main' : 'error-label-secondary'}`}>
+              {DICTIONARY.exeedsBallance}
+            </Label>
+          }
         </div>
       </Card.Content>
     </Card>

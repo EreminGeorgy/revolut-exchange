@@ -17,7 +17,13 @@ const SwitchButton: FC = () => {
   return (
     <Divider horizontal fitted clearing>
       <div>
-        <Button onClick={onArrowClick} basic circular icon={ state.isBuyMode ? 'arrow up' : 'arrow down' } size='mini'/> 
+        <Button 
+          onClick={onArrowClick}
+          basic
+          circular
+          icon={ state.isBuyMode ? 'arrow up' : 'arrow down' } size='mini'
+          data-testid="switch-button" 
+        /> 
       </div>
     </Divider>
   )

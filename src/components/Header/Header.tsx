@@ -9,7 +9,7 @@ const Header: FC = () => {
   const { state } = useContext(CurrencyDataContext)
 
   return (
-    <DangerousHtml as="h1">
+    <DangerousHtml as="h1" data-testid="header">
       {`${state.isBuyMode ? DICTIONARY.buy : DICTIONARY.sell} ${(DICTIONARY as StringMap)[state.mainCurrency]}`}
     </DangerousHtml>
   )

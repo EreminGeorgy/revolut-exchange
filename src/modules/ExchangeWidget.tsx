@@ -27,6 +27,11 @@ const ExchangeWidget: FC = () => {
     [currencyValues, state, wallets]
   )
 
+  const equalSelectorsCase = useMemo(
+    () => state.mainCurrency === state.dependentCurrency,
+    [state.mainCurrency, state.dependentCurrency]
+  )
+
   const chooseValue = useCallback(
     (first: string , second: string): string => state.isBuyMode ? first : second,
     [state.isBuyMode]
@@ -50,14 +55,15 @@ const ExchangeWidget: FC = () => {
 
   return (
     <Card className="container">
-      <Header/>
-      <Rate/>
+      <Header />
+      <Rate data-testid="rate"/>
       <ExchangeCard 
         isMain={true}
         currencyValues={currencyValues}
         setCurrencyValues={setCurrencyValues}
         wallets={wallets}
         errorMessage={errorCase}
+        data-testid="exchange-card-main"
       />
       <SwitchButton/>
       <ExchangeCard 
@@ -66,8 +72,13 @@ const ExchangeWidget: FC = () => {
         setCurrencyValues={setCurrencyValues}
         wallets={wallets}
         errorMessage ={errorCase}
+        data-testid="exchange-card-secondary"
       />
-      <SubmitButton disabled={!!error || isFetching} onClick={submitHandler} currencyValues={currencyValues}/>
+      <SubmitButton 
+        disabled={!!error || isFetching || equalSelectorsCase || errorCase} 
+        onClick={submitHandler} 
+        currencyValues={currencyValues}
+      />
     </Card>
   )
 }
