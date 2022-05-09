@@ -1,4 +1,4 @@
-import { useContext, FC } from 'react'
+import { useContext, FC, memo } from 'react'
 
 import { DICTIONARY } from '../../constants/dictionary'
 import { CurrencyDataContext } from '../../contexts/CurrencyDataContext'
@@ -9,10 +9,10 @@ const Header: FC = () => {
   const { state } = useContext(CurrencyDataContext)
 
   return (
-    <DangerousHtml as="h1" data-testid="header">
+    <DangerousHtml type="h1" data-testid="header">
       {`${state.isBuyMode ? DICTIONARY.buy : DICTIONARY.sell} ${(DICTIONARY as StringMap)[state.mainCurrency]}`}
     </DangerousHtml>
   )
 }
 
-export default Header
+export default memo(Header)

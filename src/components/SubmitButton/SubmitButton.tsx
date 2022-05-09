@@ -19,7 +19,7 @@ const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled, setCurrenc
 
   const [isModalOpen, setModalOpen] = useState(false)
 
-  const handleButtonClick = useCallback(
+  const handleClick = useCallback(
     () => {
       if (!currencyValues.dependent || !currencyValues.main) {
         return
@@ -55,7 +55,7 @@ const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled, setCurrenc
 
   return (
     <>
-      <Button onClick={handleButtonClick} fluid disabled={disabled} data-testid="submit">
+      <Button onClick={handleClick} fluid disabled={disabled} data-testid="submit">
         {`
           ${state.isBuyMode ? DICTIONARY.buy : DICTIONARY.sell} 
           ${(DICTIONARY as StringMap)[state.mainCurrency]}

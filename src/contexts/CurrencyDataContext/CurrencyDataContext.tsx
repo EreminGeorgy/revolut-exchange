@@ -12,7 +12,7 @@ type Props = {
 export const CurrencyDataContext = createContext<{
   state: CurrencyState
   dispatch: Dispatch<CurrencyAction>
-  rate: number,
+  rate: number
   error: Error | undefined
   isFetching: boolean
 }>({

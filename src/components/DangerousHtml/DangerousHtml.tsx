@@ -1,13 +1,13 @@
 import { ElementType, ReactNode, FC } from 'react'
 
 type Props = {
-	as?: ElementType
+	type?: ElementType
 	className?: string
 	children: ReactNode
 }
 
-const DangerousHtml: FC<Props> = ({ children, as = 'span', ...rest }) => {
-  const Wrapper = as
+const DangerousHtml: FC<Props> = ({ children, type = 'span', ...rest }) => {
+  const Wrapper = type
   return (
     <Wrapper
       dangerouslySetInnerHTML={{

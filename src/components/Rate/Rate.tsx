@@ -20,7 +20,7 @@ const Rate: FC = () => {
     <div>
       <Label>    
         <Icon name='chart line'/>
-        <DangerousHtml as="span">{computedRatesString}</DangerousHtml>
+        <DangerousHtml type="span">{computedRatesString}</DangerousHtml>
       </Label>
     </div>
   )

@@ -14,8 +14,8 @@ test('matches its snapshot', () => {
     setCurrencyValues={() => null}
     wallets = {{
       [CURRENCIES.EUR]: 1000,
-      [CURRENCIES.USD]: 1000,
-      [CURRENCIES.GBP]: 1000,
+      [CURRENCIES.USD]: 100,
+      [CURRENCIES.GBP]: 10,
     }}
     errorMessage={true}
   />)

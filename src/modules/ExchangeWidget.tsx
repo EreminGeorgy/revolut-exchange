@@ -10,11 +10,11 @@ import SwitchButton from '../components/SwitchButton'
 import { InputState } from '../components/types'
 import SubmitButton from '../components/SubmitButton'
 import { CURRENCIES } from '../constants/currencies'
-import useDebounce from '../hooks/useDebounce'
+import { UPDATE_WALLETS } from '../reducers/walletsReducer/actions'
 
 const ExchangeWidget: FC = () => {
 
-  const { wallets, updateWallets } = useContext(WalletsContext)
+  const { wallets, dispatch } = useContext(WalletsContext)
   const { state, error, isFetching} = useContext(CurrencyDataContext)
 
   const [currencyValues, setCurrencyValues] = useState<InputState>({
@@ -22,15 +22,13 @@ const ExchangeWidget: FC = () => {
     dependent: '',
   })
 
-  const debouncedCurrrencyValues = useDebounce(currencyValues, 300)
-
-  const errorCase = useMemo(
+  const isError = useMemo(
     () => !state.isBuyMode && (wallets[state.mainCurrency] - Number(currencyValues.main) < 0)
       || state.isBuyMode && (wallets[state.dependentCurrency] - Number(currencyValues.dependent) < 0),
     [currencyValues, state, wallets]
   )
 
-  const equalSelectorsCase = useMemo(
+  const isSameCurrency = useMemo(
     () => state.mainCurrency === state.dependentCurrency,
     [state.mainCurrency, state.dependentCurrency]
   )
@@ -47,7 +45,7 @@ const ExchangeWidget: FC = () => {
 
   const submitHandler = useCallback(
     () => {
-      updateWallets({
+      dispatch({ type: UPDATE_WALLETS, payload: {
         buy:{
           currency: chooseValue(state.mainCurrency, state.dependentCurrency) as CURRENCIES,
           amount: Number(chooseValue(currencyValues.main, currencyValues.dependent)),
@@ -56,9 +54,10 @@ const ExchangeWidget: FC = () => {
           currency: chooseValue(state.dependentCurrency, state.mainCurrency) as CURRENCIES,
           amount: Number(chooseValue(currencyValues.dependent, currencyValues.main)),
         },
-      })
+      }}
+      )
     },
-    [updateWallets, state, currencyValues, chooseValue]
+    [dispatch, currencyValues, chooseValue, state]
   )
 
   return (
@@ -70,22 +69,22 @@ const ExchangeWidget: FC = () => {
         currencyValues={currencyValues}
         setCurrencyValues={setCurrencyValues}
         wallets={wallets}
-        errorMessage={errorCase}
+        errorMessage={isError}
         data-testid="exchange-card-main"
       />
       <SwitchButton/>
       <ExchangeCard 
         isMain={false}
-        currencyValues={debouncedCurrrencyValues}
+        currencyValues={currencyValues}
         setCurrencyValues={setCurrencyValues}
         wallets={wallets}
-        errorMessage ={errorCase}
+        errorMessage ={isError}
         data-testid="exchange-card-secondary"
       />
       <SubmitButton 
-        disabled={!!error || isFetching || equalSelectorsCase || errorCase || zeroExchangeCase} 
+        disabled={!!error || isFetching || isSameCurrency || isError || zeroExchangeCase} 
         onClick={submitHandler} 
-        currencyValues={debouncedCurrrencyValues}
+        currencyValues={currencyValues}
         setCurrencyValues={setCurrencyValues}
       />
     </Card>

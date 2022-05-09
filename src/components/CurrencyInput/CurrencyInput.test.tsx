@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import React from 'react'
 import userEvent from '@testing-library/user-event'
 
@@ -10,7 +10,7 @@ const Wrapper = () => {
   const [state, setState] = React.useState('')
   return (
     <CurrencyInput 
-      isMain={true}
+      testId='currency-input-main'
       handleInputChange={(val) => {
         onChangeSpy(val)
         setState(val)

@@ -6,11 +6,12 @@ import { CURRENCIES, currenciesData } from '../../constants/currencies'
 import { CurrencyDataContext } from '../../contexts/CurrencyDataContext'
 import { SET_MAIN_CURRENCY, SET_DEPENDENT_CURRENCY } from '../../reducers/currencyDataReducer/actions'
 import { InputState, WalletsState } from '../types'
-import './ExchangeCard.css'
 import { getCurrencySign } from '../../util/getCurrencySign'
 import { DICTIONARY } from '../../constants/dictionary'
+import CurrencyInput from '../CurrencyInput'
 
-import CurrencyInput from './CurrencyInput'
+import './ExchangeCard.css'
+
 
 
 type Props = {
@@ -91,7 +92,7 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
             <CurrencyInput
               value={isMain ? currencyValues.main : currencyValues.dependent}
               handleInputChange={handleInputChange}
-              isMain={isMain}
+              testId={`${isMain ? 'currency-input-main' : 'currency-input-secondary'}`}
             />
           </div>
         </div>
