@@ -5,7 +5,7 @@ import { SET_MAIN_CURRENCY, SET_DEPENDENT_CURRENCY, SWITCH_BUY_MODE } from './ac
 
 test('returns initial state', () => {
   expect(reducer({} as CurrencyState, {} as any)).toEqual({})
-});
+})
 
 test('handles the SET_MAIN_CURRENCY action', () => {
   expect(reducer(initialState, { type: SET_MAIN_CURRENCY, payload: CURRENCIES.EUR })).toEqual({
@@ -13,7 +13,7 @@ test('handles the SET_MAIN_CURRENCY action', () => {
     dependentCurrency: CURRENCIES.USD,
     isBuyMode: false,
   })
-});
+})
 
 test('handles the SET_DEPENDENT_CURRENCY action', () => {
   expect(reducer(initialState, { type: SET_DEPENDENT_CURRENCY, payload: CURRENCIES.EUR })).toEqual({
@@ -21,7 +21,7 @@ test('handles the SET_DEPENDENT_CURRENCY action', () => {
     dependentCurrency: CURRENCIES.EUR,
     isBuyMode: false,
   })
-});
+})
 
 test('handles the SWITCH_BUY_MODE action', () => {
   expect(reducer(initialState, { type: SWITCH_BUY_MODE, payload: true })).toEqual({
@@ -29,4 +29,4 @@ test('handles the SWITCH_BUY_MODE action', () => {
     dependentCurrency: CURRENCIES.USD,
     isBuyMode: true,
   })
-});
+})

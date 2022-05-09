@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
 
-import { CURRENCIES } from '../../constants/currencies';
+import { CURRENCIES } from '../../constants/currencies'
 
 import ExchangeCard from './ExchangeCard'
 
@@ -18,6 +18,6 @@ test('matches its snapshot', () => {
       [CURRENCIES.GBP]: 1000,
     }}
     errorMessage={true}
-  />);
-  expect(component).toMatchSnapshot();
-});
+  />)
+  expect(component).toMatchSnapshot()
+})

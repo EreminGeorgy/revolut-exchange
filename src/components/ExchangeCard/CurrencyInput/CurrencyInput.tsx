@@ -14,7 +14,7 @@ const CurrencyInput: FC<Props> = ({ isMain, value, handleInputChange }) => {
 
   const onChange = useCallback(
     (e: SyntheticEvent<HTMLElement, Event>, data: InputProps) => {
-      const match = data.value.match(NUMBER_INPUT_PATTERN);
+      const match = data.value.match(NUMBER_INPUT_PATTERN)
   
       if (!match) {
         return

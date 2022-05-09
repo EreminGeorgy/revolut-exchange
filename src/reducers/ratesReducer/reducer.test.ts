@@ -3,7 +3,7 @@ import { LOADING, FETCHED, ERROR } from './actions'
 
 test('returns initial state', () => {
   expect(reducer({} as FetchState, {} as any)).toEqual({})
-});
+})
 
 test('handles the LOADING action', () => {
   expect(reducer(initialState, { type: LOADING})).toEqual({
@@ -11,7 +11,7 @@ test('handles the LOADING action', () => {
     data: null,
     isFetching: true
   })
-});
+})
 
 test('handles the FETCHED action', () => {
   expect(reducer(initialState, {
@@ -22,7 +22,7 @@ test('handles the FETCHED action', () => {
     data: {foo: 'bar'},
     isFetching: false
   })
-});
+})
 
 test('handles the ERROR action', () => {
   expect(reducer(initialState, {
@@ -33,4 +33,4 @@ test('handles the ERROR action', () => {
     data: null,
     isFetching: false
   })
-});
+})

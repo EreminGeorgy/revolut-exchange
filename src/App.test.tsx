@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/react'
 
 import { CURRENCIES } from './constants/currencies'
-import App from './App';
+import App from './App'
 
 
 test('switch buy mode toggle works', () => {
@@ -72,6 +72,6 @@ test('shows error and disable transaction when limit is exeeded', () => {
 })
 
 test('matches its snapshot', () => {
-  const component = render(<App />);
-  expect(component).toMatchSnapshot();
-});
+  const component = render(<App />)
+  expect(component).toMatchSnapshot()
+})
