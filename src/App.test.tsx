@@ -70,3 +70,8 @@ test('shows error and disable transaction when limit is exeeded', () => {
 
   expect(submit).toHaveAttribute('disabled')
 })
+
+test('matches its snapshot', () => {
+  const component = render(<App />);
+  expect(component).toMatchSnapshot();
+});
