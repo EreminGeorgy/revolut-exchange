@@ -35,7 +35,7 @@ const ExchangeWidget: FC = () => {
   )
 
   const zeroExchangeCase = useMemo(
-    () => !(Number(currencyValues.main) || Number(currencyValues.dependent)),
+    () => !Number(currencyValues.main) || !Number(currencyValues.dependent),
     [currencyValues]
   )
 
