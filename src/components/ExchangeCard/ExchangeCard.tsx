@@ -9,6 +9,7 @@ import { InputState, WalletsState } from '../types'
 import { getCurrencySign } from '../../util/getCurrencySign'
 import { DICTIONARY } from '../../constants/dictionary'
 import CurrencyInput from '../CurrencyInput'
+import { getComputedCurrency } from '../../util/getComputedCurrency'
 
 import './ExchangeCard.css'
 
@@ -53,11 +54,11 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
       if (isMain) {
         setCurrencyValues({
           main: value,
-          dependent: ((Number(value) * rate).toFixed(2)),
+          dependent: getComputedCurrency(value, rate, true),
         })
       } else {
         setCurrencyValues({
-          main: (Number(value) / rate).toFixed(2),
+          main: getComputedCurrency(value, rate, false),
           dependent: value,
         })
       }
@@ -92,14 +93,14 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
             <CurrencyInput
               value={isMain ? currencyValues.main : currencyValues.dependent}
               handleInputChange={handleInputChange}
-              testId={`${isMain ? 'currency-input-main' : 'currency-input-secondary'}`}
+              testId={`${isMain ? 'currency-input-main' : ''}`}
             />
           </div>
         </div>
         <div>
-          <Card.Meta content={balanceString} data-testid={`${isMain ? 'main-wallet' : 'secondary-wallet'}`}/>
+          <Card.Meta content={balanceString} data-testid={`${isMain ? 'main-wallet' : ''}`}/>
           {errorMessage && isSelling && 
-            <Label basic color='red' data-testid={`${isMain ? 'error-label-main' : 'error-label-secondary'}`}>
+            <Label basic color='red' data-testid={`${isMain ? 'error-label-main' : ''}`}>
               {DICTIONARY.exeedsBallance}
             </Label>
           }
