@@ -2,8 +2,8 @@ import { Label, Icon } from 'semantic-ui-react'
 import { useContext, useMemo, FC } from 'react'
 
 import DangerousHtml from '../DangerousHtml'
-import { getCurrencySign } from '../../util/getCurrencySign'
 import { CurrencyDataContext } from '../../contexts/CurrencyDataContext'
+import { formatCurrencyString } from '../../util/formatCurrencyString'
 
 const Rate: FC = () => {
 
@@ -12,7 +12,7 @@ const Rate: FC = () => {
   const { mainCurrency, dependentCurrency } = state
 
   const computedRatesString = useMemo(
-    () => `${getCurrencySign(mainCurrency)}1 = ${getCurrencySign(dependentCurrency)}${rate.toFixed(2)}`,
+    () => `${formatCurrencyString('1', mainCurrency)} = ${formatCurrencyString(rate.toFixed(2), dependentCurrency)}`,
     [mainCurrency, dependentCurrency, rate]
   )
 

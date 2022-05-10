@@ -6,7 +6,7 @@ import { CURRENCIES, currenciesData } from '../../constants/currencies'
 import { CurrencyDataContext } from '../../contexts/CurrencyDataContext'
 import { SET_MAIN_CURRENCY, SET_DEPENDENT_CURRENCY } from '../../reducers/currencyDataReducer/actions'
 import { InputState, WalletsState } from '../types'
-import { getCurrencySign } from '../../util/getCurrencySign'
+import { formatCurrencyString } from '../../util/formatCurrencyString'
 import { DICTIONARY } from '../../constants/dictionary'
 import CurrencyInput from '../CurrencyInput'
 import { getComputedCurrency } from '../../util/getComputedCurrency'
@@ -67,13 +67,18 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
   )
 
   const balanceString = useMemo(
-    () => `
-      ${DICTIONARY.balance} 
-      ${getCurrencySign(cardCurrency)}
-      ${(isMain ? wallets[state.mainCurrency] : wallets[state.dependentCurrency]).toFixed(2)}
-    `,
+    () => {
+      const currencyValue = isMain ? wallets[state.mainCurrency] : wallets[state.dependentCurrency]
+      return `
+        ${DICTIONARY.balance}
+        ${formatCurrencyString(currencyValue.toFixed(2), cardCurrency)}
+      `
+    }
+    ,
     [cardCurrency, state.mainCurrency, state.dependentCurrency, wallets, isMain]
   )
+
+  formatCurrencyString('1', cardCurrency)
 
   return (
     <Card>

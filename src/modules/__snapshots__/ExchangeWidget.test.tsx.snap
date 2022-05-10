@@ -22,7 +22,7 @@ Object {
               class="chart line icon"
             />
             <span>
-              £1 = $0.00
+              £1.00 = $0.00
             </span>
           </div>
         </div>
@@ -141,10 +141,9 @@ Object {
                 data-testid="main-wallet"
               >
                 
-      Balance: 
-      £
-      1000.00
-    
+        Balance:
+        £1,000.00
+      
               </div>
             </div>
           </div>
@@ -262,7 +261,7 @@ Object {
                 <div>
                   <div
                     class="ui large transparent input currency-input"
-                    data-testid="currency-input-secondary"
+                    data-testid=""
                   >
                     <input
                       placeholder="0"
@@ -276,13 +275,12 @@ Object {
             <div>
               <div
                 class="meta"
-                data-testid="secondary-wallet"
+                data-testid=""
               >
                 
-      Balance: 
-      $
-      1000.00
-    
+        Balance:
+        $1,000.00
+      
               </div>
             </div>
           </div>
@@ -321,7 +319,7 @@ Object {
             class="chart line icon"
           />
           <span>
-            £1 = $0.00
+            £1.00 = $0.00
           </span>
         </div>
       </div>
@@ -440,10 +438,9 @@ Object {
               data-testid="main-wallet"
             >
               
-      Balance: 
-      £
-      1000.00
-    
+        Balance:
+        £1,000.00
+      
             </div>
           </div>
         </div>
@@ -561,7 +558,7 @@ Object {
               <div>
                 <div
                   class="ui large transparent input currency-input"
-                  data-testid="currency-input-secondary"
+                  data-testid=""
                 >
                   <input
                     placeholder="0"
@@ -575,13 +572,12 @@ Object {
           <div>
             <div
               class="meta"
-              data-testid="secondary-wallet"
+              data-testid=""
             >
               
-      Balance: 
-      $
-      1000.00
-    
+        Balance:
+        $1,000.00
+      
             </div>
           </div>
         </div>

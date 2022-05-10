@@ -48,12 +48,12 @@ test('transaction and modal works', () => {
   fireEvent.click(submit)
 
   const modalDescription = getByTestId("modal-description")
-  expect(modalDescription).toHaveTextContent('You exchanged £ 1')
+  expect(modalDescription).toHaveTextContent('You exchanged £1.00 for $0.00')
 
   const okButton = getByTestId("ok-button")
   fireEvent.click(okButton)
 
-  expect(mainWallet).toHaveTextContent('Balance: £ 999.00')
+  expect(mainWallet).toHaveTextContent('Balance: £999.00')
 })
 
 test('shows error and disable transaction when limit is exeeded', () => {
