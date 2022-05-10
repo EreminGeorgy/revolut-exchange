@@ -33,24 +33,6 @@ test('selectors work', () => {
   expect(header).toHaveTextContent('Sell EUR')
 })
 
-test('transaction and modal works', () => {
-  const { getByTestId } = render(<App />)
-  const mainInput = getByTestId("currency-input-main").children[0]
-  const submit = getByTestId("submit")
-  const mainWallet = getByTestId("main-wallet")
-
-  fireEvent.change(mainInput, { target: { value: '1' } })
-  fireEvent.click(submit)
-
-  const modalDescription = getByTestId("modal-description")
-  expect(modalDescription).toHaveTextContent('You exchanged £1.00 for $0.00')
-
-  const okButton = getByTestId("ok-button")
-  fireEvent.click(okButton)
-
-  expect(mainWallet).toHaveTextContent('Balance: £999.00')
-})
-
 test('shows error and disable transaction when limit is exeeded', () => {
   const { getByTestId } = render(<App />)
   const mainInput = getByTestId("currency-input-main").children[0]
@@ -64,7 +46,7 @@ test('shows error and disable transaction when limit is exeeded', () => {
   fireEvent.click(submit)
 
   expect(submit).toHaveAttribute('disabled')
-  expect(submit).toHaveTextContent(DICTIONARY.error)
+  expect(submit).toHaveTextContent(DICTIONARY.insufficientFunds)
 })
 
 test('disable transaction for low value', () => {

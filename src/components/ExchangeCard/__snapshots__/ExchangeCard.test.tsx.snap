@@ -117,7 +117,6 @@ Object {
           <div>
             <div
               class="meta"
-              data-testid="main-wallet"
             >
               
         Balance:
@@ -248,7 +247,6 @@ Object {
         <div>
           <div
             class="meta"
-            data-testid="main-wallet"
           >
             
         Balance:

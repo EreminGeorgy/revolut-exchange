@@ -3,9 +3,7 @@
 exports[`matches its snapshot 1`] = `
 Object {
   "asFragment": [Function],
-  "baseElement": <body
-    class=""
-  >
+  "baseElement": <body>
     <div>
       <div
         class="app"
@@ -143,7 +141,6 @@ Object {
               <div>
                 <div
                   class="meta"
-                  data-testid="main-wallet"
                 >
                   
         Balance:
@@ -280,7 +277,6 @@ Object {
               <div>
                 <div
                   class="meta"
-                  data-testid=""
                 >
                   
         Balance:
@@ -439,7 +435,6 @@ Object {
             <div>
               <div
                 class="meta"
-                data-testid="main-wallet"
               >
                 
         Balance:
@@ -576,7 +571,6 @@ Object {
             <div>
               <div
                 class="meta"
-                data-testid=""
               >
                 
         Balance:

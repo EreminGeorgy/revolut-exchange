@@ -92,7 +92,6 @@ const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled, setCurrenc
             icon='checkmark'
             onClick={onModalClose}
             positive
-            data-testid="ok-button"
           />
         </Modal.Actions>
       </Modal>

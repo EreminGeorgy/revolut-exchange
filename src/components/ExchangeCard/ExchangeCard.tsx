@@ -103,7 +103,7 @@ const ExchangeCard: FC<Props> = ({ isMain, currencyValues, setCurrencyValues, wa
           </div>
         </div>
         <div>
-          <Card.Meta content={balanceString} data-testid={`${isMain ? 'main-wallet' : ''}`}/>
+          <Card.Meta content={balanceString}/>
           {errorMessage && isSelling && 
             <Label basic color='red' data-testid={`${isMain ? 'error-label-main' : ''}`}>
               {DICTIONARY.exeedsBallance}
