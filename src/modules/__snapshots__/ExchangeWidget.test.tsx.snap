@@ -291,12 +291,7 @@ Object {
           disabled=""
           tabindex="-1"
         >
-          
-          Sell 
-          GBP
-          for 
-          USD
-        
+          Insufficient funds
         </button>
       </div>
     </div>
@@ -588,12 +583,7 @@ Object {
         disabled=""
         tabindex="-1"
       >
-        
-          Sell 
-          GBP
-          for 
-          USD
-        
+        Insufficient funds
       </button>
     </div>
   </div>,

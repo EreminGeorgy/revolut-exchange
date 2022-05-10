@@ -8,5 +8,8 @@ export const DICTIONARY = {
   balance: 'Balance:',
   success: 'Success!',
   transactionInfo: 'You exchanged',
-  exeedsBallance: 'exeeds ballance'
+  exeedsBallance: 'exeeds ballance',
+  sameCurrency: 'Unable to exchange the same currency',
+  error: 'An error has occured',
+  insufficientFunds: 'Insufficient funds'
 }

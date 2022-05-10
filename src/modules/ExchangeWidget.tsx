@@ -11,6 +11,7 @@ import { InputState } from '../components/types'
 import SubmitButton from '../components/SubmitButton'
 import { CURRENCIES } from '../constants/currencies'
 import { UPDATE_WALLETS } from '../reducers/walletsReducer/actions'
+import { DICTIONARY } from '../constants/dictionary'
 
 const ExchangeWidget: FC = () => {
 
@@ -34,8 +35,8 @@ const ExchangeWidget: FC = () => {
   )
 
   const zeroExchangeCase = useMemo(
-    () => Number(currencyValues.main) === 0,
-    [currencyValues.main]
+    () => !(Number(currencyValues.main) || Number(currencyValues.dependent)),
+    [currencyValues]
   )
 
   const chooseValue = useCallback(
@@ -58,6 +59,27 @@ const ExchangeWidget: FC = () => {
       )
     },
     [dispatch, currencyValues, chooseValue, state]
+  )
+
+  const errorText = useMemo(
+    () => {
+      let message = null
+
+      if (isSameCurrency) {
+        message = DICTIONARY.sameCurrency
+      }
+
+      if (!!error || isError) {
+        message = DICTIONARY.error
+      }
+
+      if (zeroExchangeCase) {
+        message = DICTIONARY.insufficientFunds
+      }
+
+      return message
+    },
+    [isSameCurrency, error, isError, zeroExchangeCase]
   )
 
   return (
@@ -86,6 +108,7 @@ const ExchangeWidget: FC = () => {
         onClick={submitHandler} 
         currencyValues={currencyValues}
         setCurrencyValues={setCurrencyValues}
+        errorText={errorText}
       />
     </Card>
   )

@@ -11,9 +11,10 @@ type Props = {
   currencyValues: InputState
   disabled: boolean
   setCurrencyValues: (value: InputState) => void
+  errorText: string | null
 }
 
-const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled, setCurrencyValues }) => {
+const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled, setCurrencyValues, errorText }) => {
 
   const { state } = useContext(CurrencyDataContext)
 
@@ -52,15 +53,25 @@ const SubmitButton: FC<Props> = ({ onClick, currencyValues, disabled, setCurrenc
     [setCurrencyValues]
   )
 
+  const buttonText = useMemo(
+    () => {
+      if (disabled) {
+        return errorText
+      } else {
+        return `
+        ${state.isBuyMode ? DICTIONARY.buy : DICTIONARY.sell} 
+        ${(DICTIONARY as StringMap)[state.mainCurrency]}
+        ${DICTIONARY.for} 
+        ${(DICTIONARY as StringMap)[state.dependentCurrency]}
+      `}
+    },
+    [errorText, state, disabled]
+  )
+
   return (
     <>
       <Button onClick={handleClick} fluid disabled={disabled} data-testid="submit">
-        {`
-          ${state.isBuyMode ? DICTIONARY.buy : DICTIONARY.sell} 
-          ${(DICTIONARY as StringMap)[state.mainCurrency]}
-          ${DICTIONARY.for} 
-          ${(DICTIONARY as StringMap)[state.dependentCurrency]}
-        `}
+        {buttonText}
       </Button>
       <Modal
         onClose={onModalClose}
