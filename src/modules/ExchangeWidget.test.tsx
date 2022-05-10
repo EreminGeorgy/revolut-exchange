@@ -1,5 +1,4 @@
-import { render } from '@testing-library/react'
-import { fireEvent } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 
 import { CurrencyDataContext } from '../contexts/CurrencyDataContext/CurrencyDataContext'
 import { WalletsContext } from '../contexts/WalletsContext/WalletsContext'
