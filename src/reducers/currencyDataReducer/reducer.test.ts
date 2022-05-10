@@ -1,10 +1,10 @@
 import { CURRENCIES } from "../../constants/currencies"
 
 import { CurrencyState, reducer, initialState } from "./reducer"
-import { SET_MAIN_CURRENCY, SET_DEPENDENT_CURRENCY, SWITCH_BUY_MODE } from './actions'
+import { SET_MAIN_CURRENCY, SET_DEPENDENT_CURRENCY, SWITCH_BUY_MODE, CurrencyAction } from './actions'
 
 test('returns initial state', () => {
-  expect(reducer({} as CurrencyState, {} as any)).toEqual({})
+  expect(reducer({} as CurrencyState, {} as CurrencyAction)).toEqual({})
 })
 
 test('handles the SET_MAIN_CURRENCY action', () => {

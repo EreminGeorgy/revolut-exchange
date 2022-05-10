@@ -1,21 +1,10 @@
-import { CURRENCIES } from '../../constants/currencies'
-
 import { 
   LOADING,
   FETCHED,
   ERROR,
   FetchAction,
+  CurrencyData
 } from './actions'
-
-type CurrencyData = {
-  base: CURRENCIES,
-  disclamer: string,
-  license: string,
-  rates: {
-    [key:string]: number,
-  },
-  timestamp: number,
-}
 
 export interface FetchState {
   data?: CurrencyData | null

@@ -1,8 +1,11 @@
+import { CURRENCIES } from "../../constants/currencies"
+
 import { FetchState, reducer, initialState } from "./reducer"
-import { LOADING, FETCHED, ERROR } from './actions'
+import { LOADING, FETCHED, ERROR, FetchAction } from './actions'
+
 
 test('returns initial state', () => {
-  expect(reducer({} as FetchState, {} as any)).toEqual({})
+  expect(reducer({} as FetchState, {} as FetchAction)).toEqual({})
 })
 
 test('handles the LOADING action', () => {
@@ -16,10 +19,30 @@ test('handles the LOADING action', () => {
 test('handles the FETCHED action', () => {
   expect(reducer(initialState, {
     type: FETCHED,
-    payload: {foo: 'bar'}
+    payload: {
+      base: CURRENCIES.EUR,
+      disclamer: 'foo',
+      license: 'bar',
+      rates: {
+        [CURRENCIES.EUR]: 1,
+        [CURRENCIES.USD]: 1.12,
+        [CURRENCIES.GBP]: 1.25,
+      },
+      timestamp: 1
+    }
   })).toEqual({
     error: undefined,
-    data: {foo: 'bar'},
+    data: {
+      base: CURRENCIES.EUR,
+      disclamer: 'foo',
+      license: 'bar',
+      rates: {
+        [CURRENCIES.EUR]: 1,
+        [CURRENCIES.USD]: 1.12,
+        [CURRENCIES.GBP]: 1.25,
+      },
+      timestamp: 1
+    },
     isFetching: false
   })
 })

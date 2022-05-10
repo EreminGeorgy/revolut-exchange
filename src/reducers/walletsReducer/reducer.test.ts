@@ -2,10 +2,10 @@ import { CURRENCIES } from "../../constants/currencies"
 import { WalletsState } from "../../components/types"
 
 import { reducer, initialState } from "./reducer"
-import { UPDATE_WALLETS } from './actions'
+import { UPDATE_WALLETS, WalletsAction } from './actions'
 
 test('returns initial state', () => {
-  expect(reducer({} as WalletsState, {} as any)).toEqual({})
+  expect(reducer({} as WalletsState, {} as WalletsAction)).toEqual({})
 })
 
 test('handles the SET_MAIN_CURRENCY action', () => {

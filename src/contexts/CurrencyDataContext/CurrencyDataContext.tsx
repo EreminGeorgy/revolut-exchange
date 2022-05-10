@@ -17,7 +17,7 @@ export const CurrencyDataContext = createContext<{
   isFetching: boolean
 }>({
   state: initialState,
-  dispatch: () => null,
+  dispatch: () => void null,
   rate: 0,
   error: undefined,
   isFetching: false

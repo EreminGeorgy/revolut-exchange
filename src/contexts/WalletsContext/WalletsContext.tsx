@@ -13,7 +13,7 @@ export const WalletsContext = createContext<{
   dispatch: Dispatch<WalletsAction>
 }>({
   wallets: initialState,
-  dispatch: () => null,
+  dispatch: () => void null,
 })
 
 const WalletsProvider: FC<Props> = ({ children }) => {
