@@ -1,7 +1,7 @@
 # Revolut Exchange WebApp
 Demo Revolut exchange page for Web, written using React and Typescript. Business logic is taken from this video: https://www.youtube.com/watch?v=chAAxLg0fGk.
 
- ![](./screenshots/app.jpg)
+ ![image](./screenshots/app.jpg)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Available Scripts
